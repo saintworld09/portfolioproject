@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "tsx server.js",
     "dev": "nodemon --exec tsx server.js",
     "postinstall": "node node_modules/prisma/build/index.js generate"
   },
