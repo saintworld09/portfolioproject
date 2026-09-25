@@ -1,0 +1,935 @@
+/* =========================================================
+   PROJECT INSIGHTS PAGE
+   ========================================================= */
+
+.project-insights-page {
+    min-height: 100vh;
+
+    padding: 32px;
+
+    background: #f6f8fc;
+
+    color: #172033;
+}
+
+
+/* =========================================================
+   TOP NAVIGATION
+   ========================================================= */
+
+.project-insights-top-navigation {
+    margin-bottom: 26px;
+}
+
+.project-insights-dashboard-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #475569;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.project-insights-dashboard-link:hover {
+    color: #2563eb;
+
+    transform: translateX(-3px);
+}
+
+
+/* =========================================================
+   PAGE HEADING
+   ========================================================= */
+
+.project-insights-page-heading {
+    margin-bottom: 30px;
+}
+
+.project-insights-page-heading h1 {
+    margin: 0 0 8px;
+
+    color: #111827;
+
+    font-size: 30px;
+    font-weight: 750;
+
+    letter-spacing: -0.5px;
+
+    line-height: 1.25;
+}
+
+.project-insights-page-heading p {
+    max-width: 700px;
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   MAIN CARDS
+   ========================================================= */
+
+.project-insights-card {
+    margin-bottom: 24px;
+
+    padding: 26px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eaf2;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 2px 4px rgba(15, 23, 42, 0.02),
+        0 8px 24px rgba(15, 23, 42, 0.04);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.project-insights-card:hover {
+    border-color: #d9e2f0;
+
+    box-shadow:
+        0 4px 8px rgba(15, 23, 42, 0.03),
+        0 12px 28px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.project-insights-section-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.project-insights-section-heading h2 {
+    margin: 0 0 7px;
+
+    color: #111827;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    letter-spacing: -0.2px;
+
+    line-height: 1.35;
+}
+
+.project-insights-section-heading p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 400;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.project-insights-form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.project-insights-form-group label {
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   SELECT + TEXTAREA
+   ========================================================= */
+
+.project-insights-form-group select,
+.project-insights-form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.project-insights-form-group select:hover,
+.project-insights-form-group textarea:hover {
+    border-color: #94a3b8;
+}
+
+.project-insights-form-group select:focus,
+.project-insights-form-group textarea:focus {
+    border-color: #3b82f6;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.project-insights-form-group select {
+    min-height: 44px;
+
+    cursor: pointer;
+}
+
+.project-insights-form-group textarea {
+    min-height: 100px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+.project-insights-form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   ADD FORM
+   ========================================================= */
+
+.project-insights-add-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-bottom: 24px;
+}
+
+.project-insights-primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    align-self: flex-start;
+
+    min-height: 40px;
+
+    padding: 0 18px;
+
+    border: 1px solid #2563eb;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    letter-spacing: 0.05px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 2px 5px rgba(37, 99, 235, 0.18);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.project-insights-primary-button:hover {
+    background: #1d4ed8;
+
+    border-color: #1d4ed8;
+
+    box-shadow:
+        0 4px 10px rgba(37, 99, 235, 0.22);
+
+    transform: translateY(-1px);
+}
+
+.project-insights-primary-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   INSIGHTS / RECOMMENDATIONS LIST
+   ========================================================= */
+
+.project-insights-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.project-insight-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 14px;
+
+    padding: 17px;
+
+    background: #fbfcfe;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.project-insight-item:hover {
+    background: #ffffff;
+
+    border-color: #cbd5e1;
+
+    box-shadow:
+        0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================================
+   NUMBER
+   ========================================================= */
+
+.project-insight-number {
+    flex-shrink: 0;
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 1px;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    border: 1px solid #dbeafe;
+}
+
+
+/* =========================================================
+   INSIGHT CONTENT
+   ========================================================= */
+
+.project-insight-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.project-insight-content p {
+    margin: 3px 0 0;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 450;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+
+.project-insight-delete {
+    flex-shrink: 0;
+
+    min-height: 32px;
+
+    padding: 0 11px;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #b91c1c;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.project-insight-delete:hover {
+    background: #fef2f2;
+
+    border-color: #fca5a5;
+
+    color: #991b1b;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.project-insights-empty {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border: 1px dashed #cbd5e1;
+
+    border-radius: 10px;
+}
+
+.project-insights-empty span {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    border: 1px solid #dbeafe;
+}
+
+.project-insights-empty p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 450;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SELECTED PROJECT STATE
+   ========================================================= */
+
+.project-insights-form-group select option {
+    color: #1e293b;
+
+    background: #ffffff;
+}
+
+
+
+
+/* =========================================================
+   DELETE CONFIRMATION MODAL
+   ========================================================= */
+
+.project-insights-modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.48);
+
+    backdrop-filter: blur(3px);
+}
+
+
+.project-insights-delete-modal {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 28px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eaf2;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 20px 45px rgba(15, 23, 42, 0.18),
+        0 4px 12px rgba(15, 23, 42, 0.08);
+
+    animation: projectInsightsModalIn
+        0.2s ease-out;
+}
+
+
+@keyframes projectInsightsModalIn {
+    from {
+        opacity: 0;
+
+        transform: translateY(8px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+.project-insights-modal-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 10px;
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #b91c1c;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.project-insights-modal-content h3 {
+    margin: 0 0 8px;
+
+    color: #111827;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.project-insights-modal-content p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+.project-insights-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 26px;
+}
+
+
+.project-insights-modal-cancel,
+.project-insights-modal-confirm {
+    min-height: 40px;
+
+    padding: 0 17px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.project-insights-modal-cancel {
+    border: 1px solid #cbd5e1;
+
+    background: #ffffff;
+
+    color: #475569;
+}
+
+
+.project-insights-modal-cancel:hover {
+    background: #f8fafc;
+
+    border-color: #94a3b8;
+
+    color: #334155;
+}
+
+
+.project-insights-modal-confirm {
+    border: 1px solid #dc2626;
+
+    background: #dc2626;
+
+    color: #ffffff;
+}
+
+
+.project-insights-modal-confirm:hover {
+    background: #b91c1c;
+
+    border-color: #b91c1c;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DELETE MODAL RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .project-insights-delete-modal {
+        padding: 23px;
+
+        border-radius: 12px;
+    }
+
+    .project-insights-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .project-insights-modal-cancel,
+    .project-insights-modal-confirm {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   EDIT ACTIONS
+   ========================================================= */
+
+.project-insight-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.project-insight-edit,
+.project-insight-save,
+.project-insight-cancel {
+    min-height: 36px;
+    padding: 0 13px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Edit */
+
+.project-insight-edit {
+    border: 1px solid #bfdbfe;
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.project-insight-edit:hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+    transform: translateY(-1px);
+}
+
+
+/* Save */
+
+.project-insight-save {
+    border: 1px solid #16a34a;
+    background: #16a34a;
+    color: #ffffff;
+}
+
+.project-insight-save:hover {
+    background: #15803d;
+    border-color: #15803d;
+    transform: translateY(-1px);
+}
+
+
+/* Cancel */
+
+.project-insight-cancel {
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #475569;
+}
+
+.project-insight-cancel:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+    color: #334155;
+}
+
+
+/* =========================================================
+   EDIT TEXTAREA
+   ========================================================= */
+
+.project-insight-edit-textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 13px;
+    border: 1px solid #2563eb;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.project-insight-edit-textarea:focus {
+    border-color: #1d4ed8;
+}
+
+
+/* =========================================================
+   RESPONSIVE EDIT ACTIONS
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .project-insight-item {
+        flex-wrap: wrap;
+    }
+
+    .project-insight-content {
+        width: calc(100% - 48px);
+    }
+
+    .project-insight-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 8px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .project-insight-actions {
+        justify-content: stretch;
+    }
+
+    .project-insight-edit,
+    .project-insight-save,
+    .project-insight-cancel,
+    .project-insight-delete {
+        flex: 1;
+    }
+
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .project-insights-page {
+        padding: 24px 18px;
+    }
+
+    .project-insights-page-heading h1 {
+        font-size: 26px;
+    }
+
+    .project-insights-card {
+        padding: 21px;
+    }
+
+    .project-insight-item {
+        flex-wrap: wrap;
+    }
+
+    .project-insight-content {
+        min-width: 200px;
+    }
+
+    .project-insight-delete {
+        margin-left: 44px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .project-insights-page {
+        padding: 20px 14px;
+    }
+
+    .project-insights-page-heading {
+        margin-bottom: 22px;
+    }
+
+    .project-insights-page-heading h1 {
+        font-size: 24px;
+    }
+
+    .project-insights-page-heading p {
+        font-size: 13px;
+    }
+
+    .project-insights-card {
+        padding: 18px;
+
+        border-radius: 12px;
+    }
+
+    .project-insights-section-heading h2 {
+        font-size: 17px;
+    }
+
+    .project-insights-primary-button {
+        width: 100%;
+
+        align-self: stretch;
+    }
+
+    .project-insight-item {
+        gap: 11px;
+
+        padding: 14px;
+    }
+
+    .project-insight-number {
+        width: 28px;
+        height: 28px;
+    }
+
+    .project-insight-content {
+        min-width: calc(100% - 42px);
+    }
+
+    .project-insight-content p {
+        font-size: 13px;
+    }
+
+    .project-insight-delete {
+        width: 100%;
+
+        margin-left: 0;
+    }
+}

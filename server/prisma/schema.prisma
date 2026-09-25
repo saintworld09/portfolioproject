@@ -1,0 +1,348 @@
+generator client {
+  provider               = "prisma-client"
+  output                 = "../generated/prisma"
+  moduleFormat           = "cjs"
+  generatedFileExtension = "cts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  ADMIN
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         UserRole @default(ADMIN)
+
+  /*
+  |--------------------------------------------------------------------------
+  | Public portfolio URL
+  |
+  | Example:
+  | /portfolio/babatunde
+  |--------------------------------------------------------------------------
+  */
+  portfolioSlug String? @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User-owned portfolio data
+  |--------------------------------------------------------------------------
+  */
+
+  profile         Profile?         @relation("UserProfile")
+  projects        Project[]
+  experiences     Experience[]
+  education       Education[]
+  accomplishments Accomplishment[]
+  certifications  Certification[]
+  skills          Skill[]
+  socialLinks     SocialLink[]
+  aboutProcesses  AboutProcess[]
+  aboutSkills     AboutSkill[]
+  aboutFocus      AboutFocus[]
+}
+
+model Profile {
+  id           Int     @id @default(autoincrement())
+  fullName     String
+  headline     String
+  bio          String
+  location     String?
+  email        String?
+  phone        String?
+  profileImage String?
+  resumeUrl    String?
+  linkedinUrl  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId Int  @unique
+  user   User @relation("UserProfile", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id                 Int     @id @default(autoincrement())
+  title              String
+  slug               String
+  shortDescription   String
+  description        String?
+  businessProblem    String?
+  methodology        String?
+  datasetDescription String?
+  dashboardImageUrl  String?
+  githubUrl          String?
+  liveUrl            String?
+  category           String?
+  featured           Boolean @default(false)
+  startDate          DateTime?
+  endDate            DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | Project ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  insights        ProjectInsight[]
+  recommendations ProjectRecommendation[]
+  images          ProjectImage[]
+
+  /*
+  |--------------------------------------------------------------------------
+  | A project slug only needs to be unique
+  | within one user's portfolio.
+  |
+  | User A → sales-analysis
+  | User B → sales-analysis
+  |
+  | Both are allowed.
+  |--------------------------------------------------------------------------
+  */
+
+  @@unique([userId, slug])
+}
+
+model ProjectImage {
+  id        Int      @id @default(autoincrement())
+  projectId Int
+  imageUrl  String
+  isCover   Boolean  @default(false)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model ProjectInsight {
+  id        Int      @id @default(autoincrement())
+  insight   String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  projectId Int
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model ProjectRecommendation {
+  id             Int      @id @default(autoincrement())
+  recommendation String
+  sortOrder      Int      @default(0)
+  createdAt       DateTime @default(now())
+
+  projectId Int
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Experience {
+  id          Int      @id @default(autoincrement())
+  jobTitle    String
+  company     String
+  location    String?
+  description String?
+  startDate   DateTime
+  endDate     DateTime?
+  isCurrent   Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Education {
+  id           Int      @id @default(autoincrement())
+  institution  String
+  degree       String
+  fieldOfStudy String?
+  description  String?
+  startDate    DateTime
+  endDate      DateTime?
+  isCurrent    Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Accomplishment {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  date        DateTime?
+  url         String?
+  sortOrder   Int      @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Certification {
+  id                  Int      @id @default(autoincrement())
+  name                String
+  issuingOrganization String
+  issueDate           DateTime
+  expirationDate      DateTime?
+  credentialId        String?
+  credentialUrl       String?
+  description         String?
+  certificateUrl      String?
+  featured            Boolean  @default(false)
+  sortOrder           Int      @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Skill {
+  id          Int      @id @default(autoincrement())
+  name        String
+  category    String?
+  proficiency Int?
+  sortOrder   Int      @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SocialLink {
+  id        Int      @id @default(autoincrement())
+  platform  String
+  url       String
+  icon      String?
+  sortOrder Int      @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AboutProcess {
+  id          Int      @id @default(autoincrement())
+  stepNumber  Int
+  title       String
+  description String
+  icon        String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AboutSkill {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  icon        String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AboutFocus {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  icon        String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  /*
+  |--------------------------------------------------------------------------
+  | User ownership
+  |--------------------------------------------------------------------------
+  */
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

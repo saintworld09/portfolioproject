@@ -1,0 +1,2318 @@
+/* =========================================================
+   EXPERIENCE ADMIN PAGE
+   Premium White + Blue Portfolio Admin Design
+   ========================================================= */
+
+:root {
+    --experience-blue: #2563eb;
+    --experience-blue-dark: #1d4ed8;
+    --experience-blue-deep: #1e3a8a;
+    --experience-blue-soft: #eff6ff;
+    --experience-blue-light: #dbeafe;
+
+    --experience-text: #172033;
+    --experience-text-soft: #64748b;
+    --experience-text-muted: #94a3b8;
+
+    --experience-white: #ffffff;
+    --experience-background: #f5f8fc;
+    --experience-border: #e5eaf1;
+
+    --experience-success: #059669;
+    --experience-success-soft: #ecfdf5;
+
+    --experience-danger: #dc2626;
+    --experience-danger-soft: #fef2f2;
+
+    --experience-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.07);
+
+    --experience-shadow-soft:
+        0 10px 30px rgba(15, 23, 42, 0.05);
+
+    --experience-radius: 24px;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.experience-page {
+    position: relative;
+    min-height: 100vh;
+    padding: 48px 48px 90px;
+
+    background:
+        radial-gradient(
+            circle at 8% 8%,
+            rgba(37, 99, 235, 0.09),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 92% 18%,
+            rgba(96, 165, 250, 0.08),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 75% 88%,
+            rgba(37, 99, 235, 0.045),
+            transparent 28%
+        ),
+        var(--experience-background);
+
+    color: var(--experience-text);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND DECORATION
+   ========================================================= */
+
+.experience-page::before {
+    content: "";
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: -220px;
+    right: -140px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37, 99, 235, 0.12),
+            rgba(96, 165, 250, 0.02)
+        );
+
+    pointer-events: none;
+}
+
+
+.experience-page::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    bottom: 80px;
+    left: -170px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(37, 99, 235, 0.08);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.experience-page-header {
+    position: relative;
+
+    max-width: 1380px;
+    margin: 0 auto 34px;
+
+    padding: 34px 38px;
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(247, 250, 255, 0.88)
+        );
+
+    box-shadow:
+        0 25px 70px rgba(30, 64, 175, 0.08);
+
+    overflow: hidden;
+}
+
+
+.experience-page-header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 240px;
+    height: 240px;
+
+    right: -80px;
+    top: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(37, 99, 235, 0.15),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+.experience-page-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    right: 160px;
+    bottom: -70px;
+
+    border-radius: 50%;
+
+    border: 18px solid rgba(37, 99, 235, 0.035);
+
+    pointer-events: none;
+}
+
+
+.experience-header-content {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.experience-header-text {
+    position: relative;
+}
+
+
+.experience-eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    color: var(--experience-blue);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+}
+
+
+.experience-eyebrow::before {
+    content: "";
+
+    width: 22px;
+    height: 3px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--experience-blue),
+            #60a5fa
+        );
+}
+
+
+.experience-header-text h1 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: clamp(36px, 5vw, 58px);
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+
+    font-weight: 800;
+}
+
+
+.experience-header-text p {
+    max-width: 620px;
+
+    margin: 16px 0 0;
+
+    color: var(--experience-text-soft);
+
+    font-size: 15px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   DASHBOARD BUTTON
+   ========================================================= */
+
+.experience-dashboard-button {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+
+    padding: 13px 18px;
+
+    border: 1px solid #dbe5f2;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    color: #334155;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        color 0.25s ease;
+}
+
+
+.experience-dashboard-button:hover {
+    transform: translateY(-3px);
+
+    border-color: #bfdbfe;
+
+    color: var(--experience-blue);
+
+    box-shadow:
+        0 14px 30px rgba(37, 99, 235, 0.12);
+}
+
+
+.experience-dashboard-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 27px;
+    height: 27px;
+
+    border-radius: 9px;
+
+    background: var(--experience-blue-soft);
+
+    color: var(--experience-blue);
+
+    font-size: 16px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.experience-dashboard-button:hover
+.experience-dashboard-icon {
+    transform: translateX(-3px);
+
+    background: var(--experience-blue);
+
+    color: white;
+}
+
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
+.experience-alert {
+    position: relative;
+
+    max-width: 1380px;
+
+    margin: 0 auto 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 15px 18px;
+
+    border-radius: 16px;
+
+    animation:
+        experienceAlertIn 0.35s ease both;
+}
+
+
+@keyframes experienceAlertIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.experience-alert-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 12px;
+
+    font-weight: 800;
+}
+
+
+.experience-alert strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    font-size: 13px;
+}
+
+
+.experience-alert p {
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+.experience-alert-close {
+    margin-left: auto;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: currentColor;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.experience-alert-close:hover {
+    background: rgba(15, 23, 42, 0.06);
+}
+
+
+.experience-alert-error {
+    border: 1px solid #fecaca;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7f7,
+            #ffffff
+        );
+
+    color: #991b1b;
+}
+
+
+.experience-alert-error
+.experience-alert-icon {
+    background: #fee2e2;
+
+    color: var(--experience-danger);
+}
+
+
+.experience-alert-success {
+    border: 1px solid #a7f3d0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf9,
+            #ffffff
+        );
+
+    color: #065f46;
+}
+
+
+.experience-alert-success
+.experience-alert-icon {
+    background: #d1fae5;
+
+    color: var(--experience-success);
+}
+
+
+/* =========================================================
+   FORM CARD
+   ========================================================= */
+
+.experience-form-card {
+    position: relative;
+
+    max-width: 1380px;
+
+    margin: 0 auto 50px;
+
+    padding: 38px;
+
+    border: 1px solid rgba(226, 232, 240, 0.85);
+
+    border-radius: var(--experience-radius);
+
+    background: rgba(255, 255, 255, 0.94);
+
+    box-shadow: var(--experience-shadow);
+
+    overflow: hidden;
+}
+
+
+.experience-form-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1d4ed8,
+            #3b82f6,
+            #93c5fd,
+            #2563eb
+        );
+}
+
+
+.experience-form-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -80px;
+    top: 100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(37, 99, 235, 0.055),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.experience-card-header {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 34px;
+}
+
+
+.experience-section-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--experience-blue);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+}
+
+
+.experience-card-header h2,
+.experience-list-header h2 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 26px;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
+}
+
+
+.experience-card-header p,
+.experience-list-header p {
+    max-width: 620px;
+
+    margin: 8px 0 0;
+
+    color: var(--experience-text-soft);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+.experience-card-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: white;
+
+    font-size: 28px;
+
+    font-weight: 300;
+
+    box-shadow:
+        0 12px 25px rgba(37, 99, 235, 0.24);
+
+    transform: rotate(3deg);
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.experience-form {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 23px 24px;
+}
+
+
+.experience-form-full {
+    grid-column: 1 / -1;
+}
+
+
+.experience-form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.experience-form-group label {
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    letter-spacing: 0.01em;
+}
+
+
+.experience-form-group input,
+.experience-form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dce3ec;
+
+    border-radius: 14px;
+
+    background: #fbfcfe;
+
+    color: #172033;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        transform 0.2s ease;
+}
+
+
+.experience-form-group input {
+    height: 48px;
+
+    padding: 0 15px;
+}
+
+
+.experience-form-group textarea {
+    min-height: 145px;
+
+    padding: 14px 15px;
+
+    resize: vertical;
+
+    line-height: 1.65;
+}
+
+
+.experience-form-group input::placeholder,
+.experience-form-group textarea::placeholder {
+    color: #a5afbd;
+}
+
+
+.experience-form-group input:hover,
+.experience-form-group textarea:hover {
+    border-color: #c7d4e5;
+
+    background: white;
+}
+
+
+.experience-form-group input:focus,
+.experience-form-group textarea:focus {
+    border-color: #60a5fa;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.09),
+        0 8px 20px rgba(37, 99, 235, 0.05);
+}
+
+
+.experience-form-group input:focus,
+.experience-form-group textarea:focus {
+    transform: translateY(-1px);
+}
+
+
+.experience-form-group input:disabled {
+    background: #f1f5f9;
+
+    color: #94a3b8;
+
+    cursor: not-allowed;
+
+    border-color: #e2e8f0;
+}
+
+
+/* =========================================================
+   CURRENT POSITION
+   ========================================================= */
+
+.experience-current-wrapper {
+    margin-top: -2px;
+}
+
+
+.experience-checkbox-label {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    width: 100%;
+
+    padding: 16px 18px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dbe5f2;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fbff,
+            #ffffff
+        );
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.experience-checkbox-label:hover {
+    transform: translateY(-2px);
+
+    border-color: #bfdbfe;
+
+    background: #f8fbff;
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.07);
+}
+
+
+.experience-checkbox-label input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.experience-custom-checkbox {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 22px;
+    height: 22px;
+
+    border: 2px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: white;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.experience-custom-checkbox span {
+    opacity: 0;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    transform: scale(0.5);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.experience-checkbox-label input:checked
++ .experience-custom-checkbox {
+    border-color: var(--experience-blue);
+
+    background: var(--experience-blue);
+
+    box-shadow:
+        0 5px 14px rgba(37, 99, 235, 0.22);
+}
+
+
+.experience-checkbox-label input:checked
++ .experience-custom-checkbox span {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+.experience-checkbox-label > span:last-child {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.experience-checkbox-label strong {
+    color: #334155;
+
+    font-size: 13px;
+}
+
+
+.experience-checkbox-label small {
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FORM BUTTONS
+   ========================================================= */
+
+.experience-form-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    padding-top: 5px;
+}
+
+
+.experience-button {
+    min-height: 46px;
+
+    padding: 0 21px;
+
+    border-radius: 13px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.experience-button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none !important;
+}
+
+
+.experience-button-primary {
+    border: 1px solid transparent;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: white;
+
+    box-shadow:
+        0 10px 22px rgba(37, 99, 235, 0.22);
+}
+
+
+.experience-button-primary:hover:not(:disabled) {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(37, 99, 235, 0.28);
+}
+
+
+.experience-button-secondary {
+    border: 1px solid #dbe3ed;
+
+    background: white;
+
+    color: #475569;
+}
+
+
+.experience-button-secondary:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    border-color: #cbd5e1;
+
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   EXPERIENCE LIST
+   ========================================================= */
+
+.experience-list-section {
+    position: relative;
+
+    max-width: 1380px;
+
+    margin: 0 auto;
+
+    padding: 40px;
+
+    border: 1px solid rgba(226, 232, 240, 0.8);
+
+    border-radius: var(--experience-radius);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(250, 252, 255, 0.92)
+        );
+
+    box-shadow: var(--experience-shadow-soft);
+}
+
+
+.experience-list-header {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 34px;
+}
+
+
+.experience-count {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 9px 13px;
+
+    border: 1px solid #dbe5f2;
+
+    border-radius: 13px;
+
+    background: #f8fbff;
+}
+
+
+.experience-count strong {
+    color: var(--experience-blue);
+
+    font-size: 18px;
+
+    line-height: 1;
+}
+
+
+.experience-count span {
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06em;
+}
+
+
+/* =========================================================
+   CAREER TIMELINE
+   ========================================================= */
+
+.experience-list {
+    position: relative;
+
+    padding-left: 34px;
+}
+
+
+.experience-list::before {
+    content: "";
+
+    position: absolute;
+
+    top: 14px;
+    bottom: 20px;
+
+    left: 8px;
+
+    width: 2px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #93c5fd,
+            #dbeafe,
+            transparent
+        );
+}
+
+
+.experience-item {
+    position: relative;
+
+    margin-bottom: 25px;
+
+    animation:
+        experienceItemIn 0.45s ease both;
+}
+
+
+.experience-item:last-child {
+    margin-bottom: 0;
+}
+
+
+@keyframes experienceItemIn {
+    from {
+        opacity: 0;
+
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+.experience-item-marker {
+    position: absolute;
+
+    top: 28px;
+
+    left: -34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    border: 3px solid #93c5fd;
+
+    box-shadow:
+        0 0 0 5px #eff6ff;
+
+    z-index: 3;
+}
+
+
+.experience-item-marker span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--experience-blue);
+}
+
+
+.experience-item-content {
+    position: relative;
+
+    padding: 26px 28px;
+
+    border: 1px solid #e3e9f1;
+
+    border-radius: 20px;
+
+    background: white;
+
+    box-shadow:
+        0 10px 28px rgba(15, 23, 42, 0.045);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.experience-item-content::before {
+    content: "";
+
+    position: absolute;
+
+    left: -1px;
+    top: 22px;
+    bottom: 22px;
+
+    width: 3px;
+
+    border-radius: 0 5px 5px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2563eb,
+            #93c5fd
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+
+.experience-item:hover
+.experience-item-content {
+    transform: translateX(5px);
+
+    border-color: #bfdbfe;
+
+    box-shadow:
+        0 18px 38px rgba(37, 99, 235, 0.09);
+}
+
+
+.experience-item:hover
+.experience-item-content::before {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   EXPERIENCE ITEM HEADER
+   ========================================================= */
+
+.experience-item-top {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+.experience-item-title-row {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+.experience-item-title-row h3 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 19px;
+
+    line-height: 1.3;
+
+    letter-spacing: -0.02em;
+}
+
+
+.experience-current-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    background: #ecfdf5;
+
+    color: #047857;
+
+    font-size: 9px;
+
+    font-weight: 850;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+.experience-current-badge::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #10b981;
+
+    box-shadow:
+        0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+
+.experience-company {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 8px;
+
+    color: var(--experience-blue);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.experience-company span {
+    color: #cbd5e1;
+
+    font-weight: 400;
+}
+
+
+.experience-date {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    flex-shrink: 0;
+
+    padding: 8px 11px;
+
+    border: 1px solid #e8edf3;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.experience-date-separator {
+    color: #cbd5e1;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.experience-description {
+    max-width: 900px;
+
+    margin: 19px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   ITEM ACTIONS
+   ========================================================= */
+
+.experience-item-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 22px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid #eef2f7;
+}
+
+
+.experience-action {
+    padding: 7px 12px;
+
+    border: 1px solid transparent;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.experience-action:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+
+.experience-action-edit {
+    border-color: #dbeafe;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+
+.experience-action-edit:hover:not(:disabled) {
+    border-color: #bfdbfe;
+
+    background: #dbeafe;
+}
+
+
+.experience-action-delete {
+    border-color: #fee2e2;
+
+    background: #fff7f7;
+
+    color: #dc2626;
+}
+
+
+.experience-action-delete:hover:not(:disabled) {
+    border-color: #fecaca;
+
+    background: #fee2e2;
+}
+
+
+.experience-action:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.experience-loading {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 260px;
+
+    color: #64748b;
+}
+
+
+.experience-spinner {
+    width: 38px;
+    height: 38px;
+
+    margin-bottom: 15px;
+
+    border: 3px solid #dbeafe;
+
+    border-top-color: var(--experience-blue);
+
+    border-radius: 50%;
+
+    animation:
+        experienceSpin 0.8s linear infinite;
+}
+
+
+@keyframes experienceSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.experience-loading p {
+    margin: 0;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.experience-empty {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 280px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    border: 1px dashed #cbd5e1;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fbfdff,
+            #f8fafc
+        );
+}
+
+
+.experience-empty-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 16px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #dbeafe
+        );
+
+    color: var(--experience-blue);
+
+    font-size: 25px;
+
+    box-shadow:
+        0 10px 24px rgba(37, 99, 235, 0.09);
+}
+
+
+.experience-empty h3 {
+    margin: 0;
+
+    color: #334155;
+
+    font-size: 17px;
+}
+
+
+.experience-empty p {
+    max-width: 420px;
+
+    margin: 8px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .experience-page {
+        padding: 32px 25px 70px;
+    }
+
+
+    .experience-page-header,
+    .experience-form-card,
+    .experience-list-section {
+        padding: 30px;
+    }
+
+
+    .experience-header-text h1 {
+        font-size: 44px;
+    }
+
+
+    .experience-form {
+        gap: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 720px) {
+
+    .experience-page {
+        padding: 20px 15px 55px;
+    }
+
+
+    .experience-page-header {
+        padding: 26px 22px;
+
+        border-radius: 22px;
+    }
+
+
+    .experience-header-content {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .experience-header-text h1 {
+        font-size: 38px;
+    }
+
+
+    .experience-header-text p {
+        font-size: 13px;
+    }
+
+
+    .experience-dashboard-button {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .experience-form-card,
+    .experience-list-section {
+        padding: 24px 20px;
+
+        border-radius: 20px;
+    }
+
+
+    .experience-card-header,
+    .experience-list-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .experience-card-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+
+    .experience-form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .experience-form-full {
+        grid-column: auto;
+    }
+
+
+    .experience-form-actions {
+        justify-content: stretch;
+
+        flex-direction: column-reverse;
+    }
+
+
+    .experience-button {
+        width: 100%;
+    }
+
+
+    .experience-list {
+        padding-left: 25px;
+    }
+
+
+    .experience-list::before {
+        left: 6px;
+    }
+
+
+    .experience-item-marker {
+        left: -25px;
+    }
+
+
+    .experience-item-content {
+        padding: 21px 19px;
+    }
+
+
+    .experience-item-top {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .experience-date {
+        align-self: flex-start;
+    }
+
+
+    .experience-item-title-row h3 {
+        font-size: 17px;
+    }
+
+
+    .experience-description {
+        font-size: 12px;
+    }
+
+
+    .experience-item-actions {
+        justify-content: flex-start;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .experience-page {
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+
+
+    .experience-page-header {
+        padding: 23px 18px;
+    }
+
+
+    .experience-header-text h1 {
+        font-size: 34px;
+    }
+
+
+    .experience-form-card,
+    .experience-list-section {
+        padding: 21px 16px;
+    }
+
+
+    .experience-card-header h2,
+    .experience-list-header h2 {
+        font-size: 22px;
+    }
+
+
+    .experience-item-content {
+        padding: 18px 16px;
+    }
+
+
+    .experience-current-badge {
+        font-size: 8px;
+    }
+
+
+    .experience-company {
+        font-size: 12px;
+    }
+
+
+    .experience-date {
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   DELETE CONFIRMATION MODAL
+========================================================= */
+
+.experience-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(15, 23, 42, 0.58);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    animation: experienceModalOverlayIn 0.25s ease forwards;
+}
+
+.experience-delete-modal {
+    position: relative;
+
+    width: min(100%, 470px);
+
+    background: #ffffff;
+
+    border: 1px solid rgba(226, 232, 240, 0.95);
+
+    border-radius: 24px;
+
+    padding: 34px;
+
+    box-shadow:
+        0 35px 90px rgba(15, 23, 42, 0.22),
+        0 12px 35px rgba(15, 23, 42, 0.10);
+
+    animation:
+        experienceDeleteModalIn
+        0.35s cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+
+/* =========================================================
+   DELETE ICON
+========================================================= */
+
+.experience-delete-icon-wrapper {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 22px;
+}
+
+.experience-delete-icon {
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fef2f2,
+            #fff7f7
+        );
+
+    border: 1px solid #fecaca;
+
+    color: #dc2626;
+
+    box-shadow:
+        0 12px 28px rgba(220, 38, 38, 0.10);
+}
+
+.experience-delete-icon svg {
+    width: 29px;
+    height: 29px;
+}
+
+
+/* =========================================================
+   DELETE CONTENT
+========================================================= */
+
+.experience-delete-content {
+    text-align: center;
+}
+
+.experience-delete-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 9px;
+
+    color: #dc2626;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.experience-delete-content h2 {
+    margin: 0 0 12px;
+
+    color: #111827;
+
+    font-size: 26px;
+    line-height: 1.2;
+    font-weight: 800;
+
+    letter-spacing: -0.025em;
+}
+
+.experience-delete-content > p {
+    margin: 0 auto;
+
+    max-width: 380px;
+
+    color: #64748b;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   RECORD PREVIEW
+========================================================= */
+
+.experience-delete-record {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 22px;
+    padding: 16px 18px;
+
+    text-align: left;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fbff,
+            #ffffff
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.experience-delete-record strong {
+    margin-bottom: 5px;
+
+    color: #1e293b;
+
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 800;
+}
+
+.experience-delete-record span {
+    color: #64748b;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   MODAL ACTIONS
+========================================================= */
+
+.experience-delete-actions {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+
+    gap: 12px;
+
+    margin-top: 26px;
+}
+
+.experience-delete-cancel,
+.experience-delete-confirm {
+    min-height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    padding: 0 18px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.experience-delete-cancel {
+    border: 1px solid #dbe3ed;
+
+    background: #ffffff;
+
+    color: #475569;
+}
+
+.experience-delete-cancel:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    border-color: #cbd5e1;
+
+    background: #f8fafc;
+
+    color: #1e293b;
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.07);
+}
+
+.experience-delete-confirm {
+    border: 1px solid #dc2626;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #dc2626
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 10px 24px rgba(220, 38, 38, 0.18);
+}
+
+.experience-delete-confirm:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #dc2626,
+            #b91c1c
+        );
+
+    box-shadow:
+        0 15px 30px rgba(220, 38, 38, 0.25);
+}
+
+.experience-delete-cancel:disabled,
+.experience-delete-confirm:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   DELETE LOADING SPINNER
+========================================================= */
+
+.experience-delete-spinner {
+    width: 15px;
+    height: 15px;
+
+    margin-right: 9px;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+        experienceDeleteSpinner
+        0.7s linear infinite;
+}
+
+
+/* =========================================================
+   MODAL ANIMATIONS
+========================================================= */
+
+@keyframes experienceModalOverlayIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes experienceDeleteModalIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes experienceDeleteSpinner {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   DELETE MODAL RESPONSIVE
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .experience-modal-overlay {
+        padding: 18px;
+    }
+
+    .experience-delete-modal {
+        padding: 28px 22px;
+
+        border-radius: 21px;
+    }
+
+    .experience-delete-icon {
+        width: 58px;
+        height: 58px;
+
+        border-radius: 18px;
+    }
+
+    .experience-delete-icon svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .experience-delete-content h2 {
+        font-size: 23px;
+    }
+
+    .experience-delete-content > p {
+        font-size: 13px;
+    }
+
+    .experience-delete-actions {
+        grid-template-columns: 1fr;
+
+        gap: 9px;
+    }
+
+    .experience-delete-confirm {
+        order: 1;
+    }
+
+    .experience-delete-cancel {
+        order: 2;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .experience-modal-overlay,
+    .experience-delete-modal,
+    .experience-delete-spinner {
+        animation: none;
+    }
+
+    .experience-modal-overlay {
+        opacity: 1;
+    }
+
+    .experience-delete-modal {
+        opacity: 1;
+
+        transform: none;
+    }
+}
