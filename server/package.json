@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsx server.js",
-    "dev": "nodemon --exec tsx server.js",
-    "postinstall": "node node_modules/prisma/build/index.js generate"
-  },
+  "start": "node node_modules/tsx/dist/cli.mjs server.js",
+  "dev": "node node_modules/tsx/dist/cli.mjs server.js",
+  "postinstall": "node node_modules/prisma/build/index.js generate"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
