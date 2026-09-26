@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import "./Header.css";
 
-const API_BASE_URL = "http://localhost:5000";
+import { API_BASE_URL } from "../config";
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);

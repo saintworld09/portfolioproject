@@ -7,7 +7,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/Home.css";
 
-const API_BASE_URL = "http://localhost:5000";
+import { API_BASE_URL } from "../config";
 
 /*
  * =========================================================

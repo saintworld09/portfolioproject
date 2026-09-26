@@ -4,7 +4,7 @@ import "../styles/PublicExperience.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const API_BASE_URL = "http://localhost:5000";
+import { API_BASE_URL } from "../config";
 
 function formatDate(date) {
     if (!date) return "";

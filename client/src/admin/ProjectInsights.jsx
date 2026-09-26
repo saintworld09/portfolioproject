@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/AdminProjectInsights.css";
+import { API_BASE_URL } from "../config";
 
 function ProjectInsights() {
     const [projects, setProjects] = useState([]);
@@ -59,7 +60,7 @@ function ProjectInsights() {
                 }
 
                 const response = await fetch(
-                    "http://localhost:5000/api/projects",
+                    `${API_BASE_URL}/api/projects`,
                     {
                         headers: {
                             Authorization:
@@ -70,9 +71,9 @@ function ProjectInsights() {
 
                 if (!response.ok) {
                     const data =
-                        await response.json().catch(
-                            () => ({})
-                        );
+                        await response
+                            .json()
+                            .catch(() => ({}));
 
                     throw new Error(
                         data.message ||
@@ -84,7 +85,11 @@ function ProjectInsights() {
                     await response.json();
 
                 if (!cancelled) {
-                    setProjects(data);
+                    setProjects(
+                        Array.isArray(data)
+                            ? data
+                            : []
+                    );
                 }
             } catch (error) {
                 if (!cancelled) {
@@ -117,7 +122,11 @@ function ProjectInsights() {
         setInsights([]);
         setRecommendations([]);
 
-        // Reset editing state when changing projects
+        // Reset forms
+        setNewInsight("");
+        setNewRecommendation("");
+
+        // Reset editing state
         setEditingInsightId(null);
         setEditingRecommendationId(null);
         setEditingInsightText("");
@@ -128,40 +137,76 @@ function ProjectInsights() {
         }
 
         try {
+            const token =
+                localStorage.getItem("token");
+
+            if (!token) {
+                throw new Error(
+                    "Your session has expired. Please log in again."
+                );
+            }
+
             const [
                 insightsResponse,
                 recommendationsResponse,
             ] = await Promise.all([
                 fetch(
-                    `http://localhost:5000/api/projects/${projectId}/insights`
+                    `${API_BASE_URL}/api/projects/${projectId}/insights`,
+                    {
+                        headers: {
+                            Authorization:
+                                `Bearer ${token}`,
+                        },
+                    }
                 ),
 
                 fetch(
-                    `http://localhost:5000/api/projects/${projectId}/recommendations`
+                    `${API_BASE_URL}/api/projects/${projectId}/recommendations`,
+                    {
+                        headers: {
+                            Authorization:
+                                `Bearer ${token}`,
+                        },
+                    }
                 ),
             ]);
 
+            const insightsData =
+                await insightsResponse
+                    .json()
+                    .catch(() => []);
+
+            const recommendationsData =
+                await recommendationsResponse
+                    .json()
+                    .catch(() => []);
+
             if (!insightsResponse.ok) {
                 throw new Error(
+                    insightsData.message ||
                     "Failed to fetch project insights"
                 );
             }
 
             if (!recommendationsResponse.ok) {
                 throw new Error(
+                    recommendationsData.message ||
                     "Failed to fetch project recommendations"
                 );
             }
 
-            const insightsData =
-                await insightsResponse.json();
+            setInsights(
+                Array.isArray(insightsData)
+                    ? insightsData
+                    : []
+            );
 
-            const recommendationsData =
-                await recommendationsResponse.json();
-
-            setInsights(insightsData);
             setRecommendations(
-                recommendationsData
+                Array.isArray(
+                    recommendationsData
+                )
+                    ? recommendationsData
+                    : []
             );
         } catch (error) {
             console.error(
@@ -199,7 +244,7 @@ function ProjectInsights() {
             }
 
             const response = await fetch(
-                `http://localhost:5000/api/projects/${selectedProjectId}/insights`,
+                `${API_BASE_URL}/api/projects/${selectedProjectId}/insights`,
                 {
                     method: "POST",
 
@@ -219,7 +264,9 @@ function ProjectInsights() {
             );
 
             const data =
-                await response.json();
+                await response
+                    .json()
+                    .catch(() => ({}));
 
             if (!response.ok) {
                 throw new Error(
@@ -228,8 +275,8 @@ function ProjectInsights() {
                 );
             }
 
-            setInsights([
-                ...insights,
+            setInsights((currentInsights) => [
+                ...currentInsights,
                 data,
             ]);
 
@@ -272,7 +319,7 @@ function ProjectInsights() {
             }
 
             const response = await fetch(
-                `http://localhost:5000/api/projects/${selectedProjectId}/recommendations`,
+                `${API_BASE_URL}/api/projects/${selectedProjectId}/recommendations`,
                 {
                     method: "POST",
 
@@ -292,7 +339,9 @@ function ProjectInsights() {
             );
 
             const data =
-                await response.json();
+                await response
+                    .json()
+                    .catch(() => ({}));
 
             if (!response.ok) {
                 throw new Error(
@@ -301,10 +350,12 @@ function ProjectInsights() {
                 );
             }
 
-            setRecommendations([
-                ...recommendations,
-                data,
-            ]);
+            setRecommendations(
+                (currentRecommendations) => [
+                    ...currentRecommendations,
+                    data,
+                ]
+            );
 
             setNewRecommendation("");
         } catch (error) {
@@ -325,7 +376,7 @@ function ProjectInsights() {
         setEditingInsightId(item.id);
         setEditingInsightText(item.insight);
 
-        // Make sure recommendation edit mode is closed
+        // Close recommendation edit mode
         setEditingRecommendationId(null);
         setEditingRecommendationText("");
     };
@@ -363,7 +414,7 @@ function ProjectInsights() {
             }
 
             const response = await fetch(
-                `http://localhost:5000/api/projects/insights/${id}`,
+                `${API_BASE_URL}/api/projects/insights/${id}`,
                 {
                     method: "PUT",
 
@@ -383,7 +434,9 @@ function ProjectInsights() {
             );
 
             const data =
-                await response.json();
+                await response
+                    .json()
+                    .catch(() => ({}));
 
             if (!response.ok) {
                 throw new Error(
@@ -392,8 +445,8 @@ function ProjectInsights() {
                 );
             }
 
-            setInsights(
-                insights.map((item) =>
+            setInsights((currentInsights) =>
+                currentInsights.map((item) =>
                     item.id === id
                         ? data
                         : item
@@ -420,11 +473,12 @@ function ProjectInsights() {
         item
     ) => {
         setEditingRecommendationId(item.id);
+
         setEditingRecommendationText(
             item.recommendation
         );
 
-        // Make sure insight edit mode is closed
+        // Close insight edit mode
         setEditingInsightId(null);
         setEditingInsightText("");
     };
@@ -464,7 +518,7 @@ function ProjectInsights() {
             }
 
             const response = await fetch(
-                `http://localhost:5000/api/projects/recommendations/${id}`,
+                `${API_BASE_URL}/api/projects/recommendations/${id}`,
                 {
                     method: "PUT",
 
@@ -484,7 +538,9 @@ function ProjectInsights() {
             );
 
             const data =
-                await response.json();
+                await response
+                    .json()
+                    .catch(() => ({}));
 
             if (!response.ok) {
                 throw new Error(
@@ -494,11 +550,13 @@ function ProjectInsights() {
             }
 
             setRecommendations(
-                recommendations.map((item) =>
-                    item.id === id
-                        ? data
-                        : item
-                )
+                (currentRecommendations) =>
+                    currentRecommendations.map(
+                        (item) =>
+                            item.id === id
+                                ? data
+                                : item
+                    )
             );
 
             setEditingRecommendationId(null);
@@ -558,7 +616,7 @@ function ProjectInsights() {
             }
 
             const response = await fetch(
-                `http://localhost:5000/api/projects/insights/${id}`,
+                `${API_BASE_URL}/api/projects/insights/${id}`,
                 {
                     method: "DELETE",
 
@@ -570,7 +628,9 @@ function ProjectInsights() {
             );
 
             const data =
-                await response.json();
+                await response
+                    .json()
+                    .catch(() => ({}));
 
             if (!response.ok) {
                 throw new Error(
@@ -579,8 +639,8 @@ function ProjectInsights() {
                 );
             }
 
-            setInsights(
-                insights.filter(
+            setInsights((currentInsights) =>
+                currentInsights.filter(
                     (item) =>
                         item.id !== id
                 )
@@ -613,7 +673,7 @@ function ProjectInsights() {
             }
 
             const response = await fetch(
-                `http://localhost:5000/api/projects/recommendations/${id}`,
+                `${API_BASE_URL}/api/projects/recommendations/${id}`,
                 {
                     method: "DELETE",
 
@@ -625,7 +685,9 @@ function ProjectInsights() {
             );
 
             const data =
-                await response.json();
+                await response
+                    .json()
+                    .catch(() => ({}));
 
             if (!response.ok) {
                 throw new Error(
@@ -635,10 +697,11 @@ function ProjectInsights() {
             }
 
             setRecommendations(
-                recommendations.filter(
-                    (item) =>
-                        item.id !== id
-                )
+                (currentRecommendations) =>
+                    currentRecommendations.filter(
+                        (item) =>
+                            item.id !== id
+                    )
             );
         } catch (error) {
             console.error(
@@ -665,10 +728,7 @@ function ProjectInsights() {
             );
         }
 
-        if (
-            deleteType ===
-            "recommendation"
-        ) {
+        if (deleteType === "recommendation") {
             await handleDeleteRecommendation(
                 itemToDelete.id
             );
@@ -688,7 +748,7 @@ function ProjectInsights() {
 
             {/* =================================================
                 TOP NAVIGATION
-                ================================================= */}
+            ================================================= */}
 
             <div className="project-insights-top-navigation">
 
@@ -701,10 +761,9 @@ function ProjectInsights() {
 
             </div>
 
-
             {/* =================================================
                 PAGE HEADING
-                ================================================= */}
+            ================================================= */}
 
             <div className="project-insights-page-heading">
 
@@ -724,10 +783,9 @@ function ProjectInsights() {
 
             </div>
 
-
             {/* =================================================
                 PROJECT SELECTION
-                ================================================= */}
+            ================================================= */}
 
             <section className="project-insights-card">
 
@@ -748,7 +806,6 @@ function ProjectInsights() {
 
                 </div>
 
-
                 <div className="project-insights-form-group">
 
                     <label htmlFor="project">
@@ -757,9 +814,7 @@ function ProjectInsights() {
 
                     <select
                         id="project"
-                        value={
-                            selectedProjectId
-                        }
+                        value={selectedProjectId}
                         onChange={
                             handleProjectChange
                         }
@@ -792,17 +847,16 @@ function ProjectInsights() {
 
             </section>
 
-
             {/* =================================================
                 PROJECT MANAGEMENT
-                ================================================= */}
+            ================================================= */}
 
             {selectedProjectId && (
                 <>
 
                     {/* =================================================
                         KEY INSIGHTS
-                        ================================================= */}
+                    ================================================= */}
 
                     <section className="project-insights-card">
 
@@ -823,7 +877,6 @@ function ProjectInsights() {
 
                         </div>
 
-
                         {/* Add Insight Form */}
 
                         <form
@@ -841,15 +894,12 @@ function ProjectInsights() {
 
                                 <textarea
                                     id="newInsight"
-                                    value={
-                                        newInsight
-                                    }
+                                    value={newInsight}
                                     onChange={(
                                         event
                                     ) =>
                                         setNewInsight(
-                                            event.target
-                                                .value
+                                            event.target.value
                                         )
                                     }
                                     placeholder="Enter a key insight from this project..."
@@ -857,7 +907,6 @@ function ProjectInsights() {
                                 />
 
                             </div>
-
 
                             <button
                                 type="submit"
@@ -868,13 +917,11 @@ function ProjectInsights() {
 
                         </form>
 
-
                         {/* Insights List */}
 
                         <div className="project-insights-list">
 
-                            {insights.length ===
-                            0 ? (
+                            {insights.length === 0 ? (
                                 <div className="project-insights-empty">
 
                                     <span>
@@ -907,7 +954,6 @@ function ProjectInsights() {
                                                 }
                                             </div>
 
-
                                             <div className="project-insight-content">
 
                                                 {editingInsightId ===
@@ -921,9 +967,7 @@ function ProjectInsights() {
                                                             event
                                                         ) =>
                                                             setEditingInsightText(
-                                                                event
-                                                                    .target
-                                                                    .value
+                                                                event.target.value
                                                             )
                                                         }
                                                         rows="3"
@@ -937,7 +981,6 @@ function ProjectInsights() {
                                                 )}
 
                                             </div>
-
 
                                             <div className="project-insight-actions">
 
@@ -1006,10 +1049,9 @@ function ProjectInsights() {
 
                     </section>
 
-
                     {/* =================================================
                         STRATEGIC RECOMMENDATIONS
-                        ================================================= */}
+                    ================================================= */}
 
                     <section className="project-insights-card">
 
@@ -1029,7 +1071,6 @@ function ProjectInsights() {
                             </div>
 
                         </div>
-
 
                         {/* Add Recommendation Form */}
 
@@ -1055,9 +1096,7 @@ function ProjectInsights() {
                                         event
                                     ) =>
                                         setNewRecommendation(
-                                            event
-                                                .target
-                                                .value
+                                            event.target.value
                                         )
                                     }
                                     placeholder="Enter a strategic recommendation..."
@@ -1065,7 +1104,6 @@ function ProjectInsights() {
                                 />
 
                             </div>
-
 
                             <button
                                 type="submit"
@@ -1076,13 +1114,11 @@ function ProjectInsights() {
 
                         </form>
 
-
                         {/* Recommendations List */}
 
                         <div className="project-insights-list">
 
-                            {recommendations.length ===
-                            0 ? (
+                            {recommendations.length === 0 ? (
                                 <div className="project-insights-empty">
 
                                     <span>
@@ -1116,7 +1152,6 @@ function ProjectInsights() {
                                                 }
                                             </div>
 
-
                                             <div className="project-insight-content">
 
                                                 {editingRecommendationId ===
@@ -1130,9 +1165,7 @@ function ProjectInsights() {
                                                             event
                                                         ) =>
                                                             setEditingRecommendationText(
-                                                                event
-                                                                    .target
-                                                                    .value
+                                                                event.target.value
                                                             )
                                                         }
                                                         rows="3"
@@ -1146,7 +1179,6 @@ function ProjectInsights() {
                                                 )}
 
                                             </div>
-
 
                                             <div className="project-insight-actions">
 
@@ -1218,10 +1250,9 @@ function ProjectInsights() {
                 </>
             )}
 
-
             {/* =================================================
                 DELETE CONFIRMATION MODAL
-                ================================================= */}
+            ================================================= */}
 
             {showDeleteModal && (
                 <div className="project-insights-modal-overlay">
@@ -1232,13 +1263,11 @@ function ProjectInsights() {
                             !
                         </div>
 
-
                         <div className="project-insights-modal-content">
 
                             <h3>
                                 Delete{" "}
-                                {deleteType ===
-                                "insight"
+                                {deleteType === "insight"
                                     ? "Key Insight"
                                     : "Strategic Recommendation"}
                                 ?
@@ -1247,8 +1276,7 @@ function ProjectInsights() {
                             <p>
                                 Are you sure you want
                                 to delete this{" "}
-                                {deleteType ===
-                                "insight"
+                                {deleteType === "insight"
                                     ? "key insight"
                                     : "strategic recommendation"}
                                 ? This action cannot
@@ -1256,7 +1284,6 @@ function ProjectInsights() {
                             </p>
 
                         </div>
-
 
                         <div className="project-insights-modal-actions">
 
@@ -1269,7 +1296,6 @@ function ProjectInsights() {
                             >
                                 Cancel
                             </button>
-
 
                             <button
                                 type="button"

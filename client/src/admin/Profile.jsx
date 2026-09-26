@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../styles/AdminProfile.css";
 
-const API_BASE_URL = "http://localhost:5000";
+import { API_BASE_URL } from "../config";
 
 function getImageUrl(imageUrl) {
     if (!imageUrl) return null;

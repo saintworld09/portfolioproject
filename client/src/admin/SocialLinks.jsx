@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "../styles/SocialLinks.css";
 
-const API_URL = "http://localhost:5000/api/social-links";
+import { API_BASE_URL } from "../config";
+
+const API_URL = `${API_BASE_URL}/api/social-links`;
 
 const PLATFORM_OPTIONS = [
     {
