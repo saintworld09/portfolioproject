@@ -9,9 +9,7 @@ const aboutRoutes = require("./routes/aboutRoutes");
 const userRoutes = require("./routes/userRoutes");
 const experienceRoutes = require("./routes/experienceRoutes");
 const educationRoutes = require("./routes/educationRoutes");
-const certificationRoutes = require(
-    "./routes/certificationRoutes"
-);
+const certificationRoutes = require("./routes/certificationRoutes");
 const skillRoutes = require("./routes/skillRoutes");
 const accomplishmentRoutes = require("./routes/accomplishmentRoutes");
 const socialLinkRoutes = require("./routes/socialLinkRoutes");
@@ -21,10 +19,18 @@ const portfolioRoutes = require("./routes/portfolioRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// ========================================
+// STATIC UPLOADS
+// ========================================
+
 app.use(
     "/uploads",
     express.static("uploads")
 );
+
+// ========================================
+// REQUEST LOGGER
+// ========================================
 
 app.use((req, res, next) => {
     console.log(
@@ -42,13 +48,18 @@ app.use((req, res, next) => {
 // CORS
 // ========================================
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL,
+].filter(Boolean);
+
 app.use((req, res, next) => {
     const origin = req.headers.origin;
 
-    if (origin === "http://localhost:5173") {
+    if (origin && allowedOrigins.includes(origin)) {
         res.header(
             "Access-Control-Allow-Origin",
-            "http://localhost:5173"
+            origin
         );
 
         res.header(
@@ -74,11 +85,6 @@ app.use((req, res, next) => {
 // ========================================
 
 app.use(express.json());
-
-
-
-
-
 
 // ========================================
 // API ROUTES
@@ -118,5 +124,7 @@ app.get("/", (req, res) => {
 // ========================================
 
 app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://0.0.0.0:${PORT}`);
+    console.log(
+        `Server running on http://0.0.0.0:${PORT}`
+    );
 });
